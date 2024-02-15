@@ -22,19 +22,60 @@
       }
 
       body {
-        background-color: rgb(245, 245, 245);
         margin: 0;
         padding: 0;
         overflow: hidden;
       }
 
-      .background {
+      .baselayer {
         position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(245, 245, 245);
+        display: flex;
+      }
+
+      .background {
         background-color: #b3a288;
         width: 70%;
         height: 100%;
-        left: 15%;
-        transition: all 1s ease-out;
+        /*left: 15%;
+        transition: all 1s ease-out;*/
+      }
+
+      .cdlinks {
+        width: 15%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+
+      .cd {
+        background-color: rgba(121, 62, 54, 0.1);
+        border-radius: 50%;
+        height: 60px;
+        width: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border: 2px solid #793e36;
+      }
+
+      .cd:hover {
+        background-color: rgba(121, 62, 54, 1);
+        border-color: #ba9b65;
+        span {
+          color: #ba9b65;
+        }
+      }
+
+      .cdnumber {
+        font-family: "Weiss 03 Bold";
+        font-size: 48px;
+        color: #793e36;
+        margin-top: -8px;
       }
 
       .logo {
@@ -120,6 +161,43 @@
         transform: translateX(20px);
       }
 
+      .cdpage {
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        width: 70%;
+        height: 100%;
+        left: 15%;
+        top: 0;
+        padding: 1%;
+        background-color: #793e36;
+
+        > div {
+          height: 94%;
+          border: 2px solid #ba9b65;
+          padding: 1%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          div {
+            width: 70%;
+            p:nth-of-type(2) {
+              margin: 3px 0px 12px 0px;
+              font-family: "Weiss 03 Bold";
+              font-size: 36px;
+            }
+
+            p {
+              margin: 6px 0px;
+              font-family: "Weiss";
+              font-size: 24px;
+              color: #ba9b65;
+            }
+          }
+        }
+      }
+
       .tabscontainer {
         display: none;
         position: absolute;
@@ -176,7 +254,41 @@
     </style>
   </head>
   <body>
-    <div id="background" class="background"></div>
+    <div class="baselayer">
+      <div id="cdlinks" class="cdlinks">
+        <div class="cd" onclick="showpage('original')">
+          <span class="cdnumber">1</span>
+        </div>
+        <div class="cd" onclick="showpage('sw_stereo')">
+          <span class="cdnumber">2</span>
+        </div>
+        <div class="cd">
+          <span class="cdnumber">3</span>
+        </div>
+        <div class="cd">
+          <span class="cdnumber">4</span>
+        </div>
+      </div>
+      <div id="background" class="background"></div>
+      <div id="otherlinks" class="cdlinks">
+        <div
+          class="cd"
+          style="
+            background-image: url('/images/3331-9340-CHS2540-SINGLE.jpg');
+            background-position: center;
+            background-size: contain;
+          "
+        ></div>
+        <div
+          class="cd"
+          style="
+            background-image: url('/images/3331-9460-CHS2559-SINGLE.jpg');
+            background-position: center;
+            background-size: contain;
+          "
+        ></div>
+      </div>
+    </div>
 
     <!-- <div id="logo" class="logo"></div> -->
 
@@ -459,6 +571,24 @@
       </div>
     </div>
 
+    <div id="cdpage" class="cdpage">
+      <div>
+        <div id="page_original">
+          <p>CD ONE:</p>
+          <p>RAGE IN EDEN<br />[Original 1981 Analog Master]</p>
+          <p>THE VOICE</p>
+          <p>WE STAND ALONE</p>
+          <p>RAGE IN EDEN</p>
+          <p>I REMEMBER (Death In The Afternoon)</p>
+          <p>THE THIN WALL</p>
+          <p>STRANGER WITHIN</p>
+          <p>ACCENT ON YOUTH</p>
+          <p>THE ASCENT</p>
+          <p>YOUR NAME (Has Slipped My Mind Again)</p>
+        </div>
+      </div>
+    </div>
+
     <div id="tabscontainer" class="tabscontainer">
       <div id="tabs" class="tabs" onclick="showtabcontent(event)">
         <p
@@ -581,6 +711,11 @@
     <script>
       const stuff = (id) => {};
 
+      const showpage = (page) => {
+        const cdp = document.getElementById("cdpage");
+        cdp.style.display = "flex";
+      };
+
       const showtabcontent = (e) => {
         const tabclicked = e.target;
         const showcontent = tabclicked.dataset.tab;
@@ -646,6 +781,7 @@
       };
 
       const showcdpanel = () => {
+        return;
         const bg = document.getElementById("background");
         const face = document.getElementById("face");
         const faceshadow = document.getElementById("faceshadow");
