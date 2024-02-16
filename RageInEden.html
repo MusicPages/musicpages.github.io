@@ -832,6 +832,7 @@
       ready(function () {
         console.log("READY");
         console.log(screen.width, screen.height);
+        screen.orientation.lock("landscape");
 
         setTimeout(() => {
           // doing this based on screen dimensions means it has to be full screen!
