@@ -166,7 +166,7 @@
         display: none;
         position: absolute;
         flex-direction: column;
-        width: 70%;
+        width: 66%;
         height: 100%;
         left: 15%;
         top: 0;
@@ -186,12 +186,13 @@
             h2 {
               font-family: "Weiss 03 Bold";
               font-size: 2rem;
-              /* margin: 3px 0px 12px 0px; */
+              margin-block-start: 0.5em;
+              margin-block-end: 0.5em;
               color: #ba9b65;
             }
 
             p {
-              margin: 6px 0px;
+              margin: 6px 0px 6px 3px;
               font-family: "Weiss";
               color: #ba9b65;
             }
@@ -201,6 +202,7 @@
               color: #ba9b65;
               display: flex;
               margin: 6px 0px;
+              cursor: pointer;
               span {
                 padding: 0 0.15em;
               }
@@ -211,13 +213,20 @@
             }
             li:before {
               content: "";
-              border-bottom: dotted;
+              border-bottom: 2px dotted;
               order: 1;
               flex: 1;
               margin-bottom: 0.25em;
             }
+            li:hover {
+              background-color: rgb(245, 245, 245);
+            }
           }
         }
+      }
+
+      [id^="page_"] {
+        display: none;
       }
 
       .tabscontainer {
@@ -598,7 +607,6 @@
         <div id="page_original">
           <p>CD ONE:</p>
           <h2>RAGE IN EDEN<br />[Original 1981 Analog Master]</h2>
-
           <li><span>THE VOICE</span><span>1</span></li>
           <li><span>WE STAND ALONE</span><span>2</span></li>
           <li><span>RAGE IN EDEN</span><span>3</span></li>
@@ -611,6 +619,37 @@
           <li><span>THE ASCENT</span><span>8</span></li>
           <li>
             <span>YOUR NAME (Has Slipped My Mind Again)</span><span>9</span>
+          </li>
+        </div>
+        <div id="page_sw_stereo">
+          <p>CD TWO:</p>
+          <h2>RAGE IN EDEN<br />[Steven Wilson Stereo Mix]</h2>
+          <li><span>WE STAND ALONE</span><span>1</span></li>
+          <li><span>RAGE IN EDEN</span><span>2</span></li>
+          <li><span>THE THIN WALL</span><span>3</span></li>
+          <li>
+            <span>STRANGER WITHIN [Full Length Version]</span><span>4</span>
+          </li>
+          <li><span>ACCENT ON YOUTH</span><span>5</span></li>
+          <li><span>THE ASCENT</span><span>6</span></li>
+          <li>
+            <span>YOUR NAME (Has Slipped My Mind Again)</span><span>7</span>
+          </li>
+          <p style="margin-top: 4%">B-Sides / Work In Progress Mixes</p>
+          <li><span>I NEVER WANTED TO BEGIN</span><span>8</span></li>
+          <li><span>PATHS AND ANGLES</span><span>9</span></li>
+          <li>
+            <span
+              >I REMEMBER (Death In The Afternoon) [Work In Progress Mix]</span
+            >
+            <span>10</span>
+          </li>
+          <li>
+            <span
+              >YOUR NAME (Has Slipped My Mind Again) [Work In Progress
+              Mix]</span
+            >
+            <span>11</span>
           </li>
         </div>
       </div>
@@ -741,6 +780,18 @@
       const showpage = (page) => {
         const cdp = document.getElementById("cdpage");
         cdp.style.display = "flex";
+
+        const pages = document.querySelectorAll(`[id^="page_"]`);
+        //console.log(tabs);
+        pages.forEach((pg) => {
+          //console.log(getComputedStyle(tab).display);
+          if (pg.style.display === "block") {
+            pg.style.display = "none";
+          }
+        });
+
+        const element = document.getElementById(`page_${page}`);
+        element.style.display = "block";
       };
 
       const showtabcontent = (e) => {
