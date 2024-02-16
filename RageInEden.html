@@ -25,6 +25,7 @@
         margin: 0;
         padding: 0;
         overflow: hidden;
+        font-size: calc(15px + 0.390625vw);
       }
 
       .baselayer {
@@ -169,11 +170,11 @@
         height: 100%;
         left: 15%;
         top: 0;
-        padding: 1%;
+        padding: 2%;
         background-color: #793e36;
 
         > div {
-          height: 94%;
+          height: 90%;
           border: 2px solid #ba9b65;
           padding: 1%;
           display: flex;
@@ -181,18 +182,39 @@
           align-items: center;
 
           div {
-            width: 70%;
-            p:nth-of-type(2) {
-              margin: 3px 0px 12px 0px;
+            width: 60%;
+            h2 {
               font-family: "Weiss 03 Bold";
-              font-size: 36px;
+              font-size: 2rem;
+              /* margin: 3px 0px 12px 0px; */
+              color: #ba9b65;
             }
 
             p {
               margin: 6px 0px;
               font-family: "Weiss";
-              font-size: 24px;
               color: #ba9b65;
+            }
+
+            li {
+              font-family: "Weiss";
+              color: #ba9b65;
+              display: flex;
+              margin: 6px 0px;
+              span {
+                padding: 0 0.15em;
+              }
+              span:last-of-type {
+                order: 2;
+                /* width: 5em; */
+              }
+            }
+            li:before {
+              content: "";
+              border-bottom: dotted;
+              order: 1;
+              flex: 1;
+              margin-bottom: 0.25em;
             }
           }
         }
@@ -575,16 +597,21 @@
       <div>
         <div id="page_original">
           <p>CD ONE:</p>
-          <p>RAGE IN EDEN<br />[Original 1981 Analog Master]</p>
-          <p>THE VOICE</p>
-          <p>WE STAND ALONE</p>
-          <p>RAGE IN EDEN</p>
-          <p>I REMEMBER (Death In The Afternoon)</p>
-          <p>THE THIN WALL</p>
-          <p>STRANGER WITHIN</p>
-          <p>ACCENT ON YOUTH</p>
-          <p>THE ASCENT</p>
-          <p>YOUR NAME (Has Slipped My Mind Again)</p>
+          <h2>RAGE IN EDEN<br />[Original 1981 Analog Master]</h2>
+
+          <li><span>THE VOICE</span><span>1</span></li>
+          <li><span>WE STAND ALONE</span><span>2</span></li>
+          <li><span>RAGE IN EDEN</span><span>3</span></li>
+          <li>
+            <span>I REMEMBER (Death In The Afternoon)</span><span>4</span>
+          </li>
+          <li><span>THE THIN WALL</span><span>5</span></li>
+          <li><span>STRANGER WITHIN</span><span>6</span></li>
+          <li><span>ACCENT ON YOUTH</span><span>7</span></li>
+          <li><span>THE ASCENT</span><span>8</span></li>
+          <li>
+            <span>YOUR NAME (Has Slipped My Mind Again)</span><span>9</span>
+          </li>
         </div>
       </div>
     </div>
