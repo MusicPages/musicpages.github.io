@@ -166,11 +166,11 @@
         display: none;
         position: absolute;
         flex-direction: column;
-        width: 66%;
+        width: 65%;
         height: 100%;
         left: 15%;
         top: 0;
-        padding: 2%;
+        padding: 2% 2.5%;
         background-color: #793e36;
 
         > div {
@@ -182,7 +182,7 @@
           align-items: center;
 
           div {
-            width: 60%;
+            width: 64%;
             h2 {
               font-family: "Weiss 03 Bold";
               font-size: 2rem;
@@ -293,10 +293,10 @@
         <div class="cd" onclick="showpage('sw_stereo')">
           <span class="cdnumber">2</span>
         </div>
-        <div class="cd">
+        <div class="cd" onclick="showpage('singles')">
           <span class="cdnumber">3</span>
         </div>
-        <div class="cd">
+        <div class="cd" onclick="showpage('hammersmith')">
           <span class="cdnumber">4</span>
         </div>
       </div>
@@ -652,124 +652,75 @@
             <span>11</span>
           </li>
         </div>
-      </div>
-    </div>
-
-    <div id="tabscontainer" class="tabscontainer">
-      <div id="tabs" class="tabs" onclick="showtabcontent(event)">
-        <p
-          data-tab="original"
-          style="font-family: 'Weiss 03 Bold'; font-size: 24px; color: #ba9b65"
-        >
-          RAGE IN EDEN [Original 1981 Analog Master]
-        </p>
-        <p
-          data-tab="sw_stereo"
-          style="font-family: 'Weiss 03 Bold'; font-size: 24px; color: #ba9b65"
-        >
-          RAGE IN EDEN [Steven Wilson Stereo Mix]
-        </p>
-        <p
-          data-tab="singles"
-          style="font-family: 'Weiss 03 Bold'; font-size: 24px; color: #ba9b65"
-        >
-          SINGLES, B-SIDES & RARITIES
-        </p>
-        <p
-          data-tab="hammersmith"
-          style="
-            font-family: 'Weiss 03 Bold';
-            font-size: 24px;
-            color: #ba9b65;
-            padding-top: 0px;
-          "
-        >
-          HAMMERSMITH <span style="font-size: 29px">1981</span>
-        </p>
-      </div>
-
-      <div id="tabscontent" class="tabscontent">
-        <div id="tab_original">
-          <p>THE VOICE</p>
-          <p>WE STAND ALONE</p>
-          <p>RAGE IN EDEN</p>
-          <p>I REMEMBER (Death In The Afternoon)</p>
-          <p>THE THIN WALL</p>
-          <p>STRANGER WITHIN</p>
-          <p>ACCENT ON YOUTH</p>
-          <p>THE ASCENT</p>
-          <p>YOUR NAME (Has Slipped My Mind Again)</p>
-        </div>
-        <div id="tab_sw_stereo">
-          <p>WE STAND ALONE</p>
-          <p>RAGE IN EDEN</p>
-          <p>THE THIN WALL</p>
-          <p>STRANGER WITHIN [Full Length Version]</p>
-          <p>ACCENT ON YOUTH</p>
-          <p>THE ASCENT</p>
-          <p>YOUR NAME (Has Slipped My Mind Again)</p>
-          <p style="margin-top: 6%">B-Sides / Work In Progress Mixes</p>
-          <p>I NEVER WANTED TO BEGIN</p>
-          <p>PATHS AND ANGLES</p>
-          <p>
-            I REMEMBER (Death In The Afternoon)<br />[Steven Wilson Work In
-            Progress Mix]
+        <div id="page_singles">
+          <p>CD THREE:</p>
+          <h2>SINGLES, B-SIDES & RARITIES</h2>
+          <li><span>THE THIN WALL [Single Version]</span><span>1</span></li>
+          <li><span>I NEVER WANTED TO BEGIN</span><span>2</span></li>
+          <li>
+            <span>I NEVER WANTED TO BEGIN [Extended Version]</span
+            ><span>3</span>
+          </li>
+          <li><span>THE VOICE [Single Version]</span><span>4</span></li>
+          <li><span>PATHS AND ANGLES</span><span>5</span></li>
+          <li>
+            <span>PRIVATE LIVES [Live At Crystal Palace 13/6/81]</span
+            ><span>6</span>
+          </li>
+          <li>
+            <span>ALL STOOD STILL [Live At Crystal Palace 13/6/81]</span
+            ><span>7</span>
+          </li>
+          <p style="margin-top: 4%">
+            Cassette Rehearsal / Work In Progress Mixes
           </p>
-          <p>
-            YOUR NAME (Has Slipped My Mind Again)<br />[Steven Wilson Work In
-            Progress Mix]
-          </p>
+          <li>
+            <span>I REMEMBER (Death In The Afternoon) [Cassette Rehearsal]</span
+            ><span>8</span>
+          </li>
+          <li>
+            <span>ACCENT ON YOUTH [Cassette Rehearsal]</span><span>9</span>
+          </li>
+          <li>
+            <span>PATHS AND ANGLES/THE THIN WALL [Cassette Rehearsal]</span
+            ><span>10</span>
+          </li>
+          <li><span>UNTITLED I [Cassette Rehearsal]</span><span>11</span></li>
+          <li><span>UNTITLED II [Cassette Rehearsal]</span><span>12</span></li>
+          <li>
+            <span>THE THIN WALL [Work In Progress Mix]</span><span>13</span>
+          </li>
+          <li>
+            <span>STRANGER WITHIN [Work In Progress Mix]</span><span>14</span>
+          </li>
+          <li><span>THE VOICE [Work In Progress Mix]</span><span>15</span></li>
+          <li>
+            <span>WE STAND ALONE [Work In Progress Mix]</span><span>16</span>
+          </li>
         </div>
-        <div id="tab_singles">
-          <p>THE THIN WALL [Single Version]</p>
-          <p>I NEVER WANTED TO BEGIN</p>
-          <p>I NEVER WANTED TO BEGIN [Extended Version]</p>
-          <p>THE VOICE [Single Version]</p>
-          <p>PATHS AND ANGLES</p>
-          <p>PRIVATE LIVES [Live At Crystal Palace 13/6/81]</p>
-          <p>ALL STOOD STILL [Live At Crystal Palace 13/6/81]</p>
-          <div id="imgcontainer" class="imgcontainer">
-            <div id="thinwall" style="display: flex; overflow-x: hidden">
-              <img
-                id="thinwall7"
-                style="transition: margin-left linear 1s; margin-left: 0px"
-                src="/images/3331-9340-CHS2540-SINGLE.jpg"
-              />
-              <img
-                id="thinwall12"
-                src="/images/3331-9340-CHS2540-SINGLE-12.jpg"
-              />
-            </div>
-            <img src="/images/3331-9460-CHS2559-SINGLE.jpg" />
-          </div>
-          <p>Cassette Rehearsal / Work In Progress Mixes</p>
-          <p>I REMEMBER (Death In The Afternoon)<br />[Cassette Rehearsal]</p>
-          <p>ACCENT ON YOUTH [Cassette Rehearsal]</p>
-          <p>PATHS AND ANGLES/THE THIN WALL [Cassette Rehearsal]</p>
-          <p>UNTITLED I [Cassette Rehearsal]</p>
-          <p>UNTITLED II [Cassette Rehearsal]</p>
-          <p>THE THIN WALL [Work In Progress Mix]</p>
-          <p>STRANGER WITHIN [Work In Progress Mix]</p>
-          <p>THE VOICE [Work In Progress Mix]</p>
-          <p>WE STAND ALONE [Work In Progress Mix]</p>
-        </div>
-        <div id="tab_hammersmith">
-          <p>THE THIN WALL</p>
-          <p>NEW EUROPEANS</p>
-          <p>SLEEPWALK</p>
-          <p>I REMEMBER (Death In The Afternoon)</p>
-          <p>STRANGER WITHIN</p>
-          <p>MR. X</p>
-          <p>RAGE IN EDEN</p>
-          <p>ACCENT ON YOUTH</p>
-          <p>THE ASCENT</p>
-          <p>YOUR NAME (Has Slipped My Mind Again)</p>
-          <p>VIENNA</p>
-          <p>PASSIONATE REPLY</p>
-          <p>PASSING STRANGERS</p>
-          <p>WE STAND ALONE</p>
-          <p>ALL STOOD STILL</p>
-          <p>THE VOICE</p>
+        <div id="page_hammersmith">
+          <p>CD FOUR AND FIVE:</p>
+          <h2>HAMMERSMITH <span style="font-size: 36px">1981</span></h2>
+          <li><span>THE THIN WALL</span><span>1</span></li>
+          <li><span>NEW EUROPEANS</span><span>2</span></li>
+          <li><span>SLEEPWALK</span><span>3</span></li>
+          <li>
+            <span>I REMEMBER (Death In The Afternoon)</span><span>4</span>
+          </li>
+          <li><span>STRANGER WITHIN</span><span>5</span></li>
+          <li><span>MR. X</span><span>6</span></li>
+          <li><span>RAGE IN EDEN</span><span>7</span></li>
+          <li><span>ACCENT ON YOUTH</span><span>8</span></li>
+          <li><span>THE ASCENT</span><span>9</span></li>
+          <li>
+            <span>YOUR NAME (Has Slipped My Mind Again)</span><span>10</span>
+          </li>
+          <li><span>VIENNA</span><span>11</span></li>
+          <li><span>PASSIONATE REPLY</span><span>12</span></li>
+          <li><span>PASSING STRANGERS</span><span>13</span></li>
+          <li><span>WE STAND ALONE</span><span>14</span></li>
+          <li><span>ALL STOOD STILL</span><span>15</span></li>
+          <li><span>THE VOICE</span><span>16</span></li>
         </div>
       </div>
     </div>
@@ -792,70 +743,6 @@
 
         const element = document.getElementById(`page_${page}`);
         element.style.display = "block";
-      };
-
-      const showtabcontent = (e) => {
-        const tabclicked = e.target;
-        const showcontent = tabclicked.dataset.tab;
-
-        const tabs = document.querySelectorAll(`[id^="tab_"]`);
-        //console.log(tabs);
-        tabs.forEach((tab) => {
-          //console.log(getComputedStyle(tab).display);
-          if (tab.style.display === "flex") {
-            tab.style.display = "none";
-          }
-        });
-
-        const element = document.getElementById(`tab_${showcontent}`);
-        element.style.display = "flex";
-        document.getElementById("tabscontent").style.display = "flex";
-
-        if (showcontent === "singles") {
-          s = element.getBoundingClientRect();
-          d = (
-            screen.height -
-            (s.top + s.height) -
-            screen.height * 0.04
-          ).toFixed(0);
-
-          if (d < 0) {
-            // has already been calculated, so no need to do it again
-            // plus setting off another interval causes issues!
-            return;
-          }
-
-          di = d - (screen.height * 0.005).toFixed();
-
-          const ic = document.getElementById("imgcontainer");
-          ic.style.height = `${d}px`;
-
-          const tw = document.getElementById("thinwall");
-          tw.style.height = `${di}px`;
-          tw.style.width = `${di}px`;
-
-          const imgs = ic.querySelectorAll("img");
-          imgs.forEach((img) => {
-            img.style.height = `${di}px`;
-            img.style.width = `${di}px`;
-          });
-
-          setInterval(swapsingles, 4000);
-        } else {
-          clearInterval();
-        }
-      };
-
-      const swapsingles = () => {
-        const tw7 = document.getElementById("thinwall7");
-        const ml = tw7.style.marginLeft.replace("px", "");
-        const w = tw7.style.width.replace("px", "");
-
-        if (ml === "0") {
-          tw7.style.marginLeft = `${w * -1}px`;
-        } else {
-          tw7.style.marginLeft = "0px";
-        }
       };
 
       const showcdpanel = () => {
@@ -910,7 +797,6 @@
       ready(function () {
         console.log("READY");
         console.log(screen.width, screen.height);
-        screen.orientation.lock("landscape");
 
         setTimeout(() => {
           // doing this based on screen dimensions means it has to be full screen!
