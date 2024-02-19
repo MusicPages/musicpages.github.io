@@ -55,8 +55,8 @@
       .cd {
         background-color: rgba(121, 62, 54, 0.1);
         border-radius: 50%;
-        height: 12%;
-        width: 46%;
+        height: 12vh;
+        width: 12vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -162,7 +162,7 @@
         transform: translateX(20px);
       }
 
-      .cdpage {
+      .pages {
         display: none;
         position: absolute;
         flex-direction: column;
@@ -188,38 +188,14 @@
               font-size: 2rem;
               margin-block-start: 0.5em;
               margin-block-end: 0.5em;
+              margin-left: 0.07em;
               color: #ba9b65;
             }
 
             p {
-              margin: 6px 0px 6px 3px;
+              margin: 0.3em 0 0.3em 0.15em;
               font-family: "Weiss";
               color: #ba9b65;
-            }
-
-            li {
-              font-family: "Weiss";
-              color: #ba9b65;
-              display: flex;
-              margin: 6px 0px;
-              cursor: pointer;
-              span {
-                padding: 0 0.15em;
-              }
-              span:last-of-type {
-                order: 2;
-                /* width: 5em; */
-              }
-            }
-            li:before {
-              content: "";
-              border-bottom: 2px dotted;
-              order: 1;
-              flex: 1;
-              margin-bottom: 0.25em;
-            }
-            li:hover {
-              background-color: rgb(245, 245, 245);
             }
           }
         }
@@ -229,97 +205,89 @@
         display: none;
       }
 
-      .tabscontainer {
-        display: none;
-        position: absolute;
-        flex-direction: column;
-        width: 34%;
-        left: 64%;
-        top: 0;
-        margin: 1%;
-      }
-
-      .tabs {
-        display: none;
-        flex-direction: column;
-        justify-content: center;
-        border: 1px solid #ba9b65;
-        p {
-          margin: 0;
-          padding: 6px;
+      [id^="page_cd_"] {
+        li {
+          font-family: "Weiss";
+          color: #ba9b65;
+          display: flex;
+          margin: 6px 0px;
           cursor: pointer;
+          span {
+            padding: 0 0.15em;
+          }
+          span:last-of-type {
+            order: 2;
+            /* width: 5em; */
+          }
         }
-        p:hover {
+        li:hover {
           background-color: rgb(245, 245, 245);
         }
-      }
-
-      .tabscontent {
-        display: none;
-        padding: 1%;
-        border: 1px solid #ba9b65;
-        margin-top: 4%;
-      }
-
-      [id^="tab_"] {
-        display: none;
-        flex-direction: column;
-        justify-content: center;
-        p {
-          margin: 3px 0px;
-          font-family: "Weiss";
-          font-size: 18px;
-          color: #ba9b65;
+        li:before {
+          content: "";
+          border-bottom: 2px dotted;
+          order: 1;
+          flex: 1;
+          margin-bottom: 0.25em;
         }
       }
 
-      .imgcontainer {
-        width: 100%;
-        height: 0px;
-        display: flex;
-        align-content: flex-start;
-        gap: 2%;
-        margin-top: 0.7%;
-        margin-bottom: 0.3%;
+      [id^="page_singles_"] {
+        li {
+          font-family: "Weiss";
+          color: #ba9b65;
+          display: flex;
+          margin: 6px 0px;
+          cursor: pointer;
+          span {
+            padding: 0 0.15em;
+          }
+          span:hover {
+            background-color: rgb(245, 245, 245);
+          }
+        }
+        hr {
+          width: 70%;
+          text-align: left;
+          margin-left: 0.15em;
+          border-color: rgb(245, 245, 245);
+        }
+      }
+
+      #otherlinks {
+        div {
+          background-position: center;
+          background-size: contain;
+        }
+        div:first-of-type {
+          background-image: url("/images/3331-9340-CHS2540-SINGLE.jpg");
+        }
+        div:last-of-type {
+          background-image: url("/images/3331-9460-CHS2559-SINGLE.jpg");
+        }
       }
     </style>
   </head>
   <body>
     <div class="baselayer">
       <div id="cdlinks" class="cdlinks">
-        <div class="cd" onclick="showpage('original')">
+        <div class="cd" onclick="showpage('cd_original')">
           <span class="cdnumber">1</span>
         </div>
-        <div class="cd" onclick="showpage('sw_stereo')">
+        <div class="cd" onclick="showpage('cd_sw_stereo')">
           <span class="cdnumber">2</span>
         </div>
-        <div class="cd" onclick="showpage('singles')">
+        <div class="cd" onclick="showpage('cd_singles')">
           <span class="cdnumber">3</span>
         </div>
-        <div class="cd" onclick="showpage('hammersmith')">
+        <div class="cd" onclick="showpage('cd_hammersmith')">
           <span class="cdnumber">4</span>
         </div>
       </div>
       <div id="background" class="background"></div>
       <div id="otherlinks" class="cdlinks">
-        <div
-          class="cd"
-          style="
-            background-image: url('/images/3331-9340-CHS2540-SINGLE.jpg');
-            background-position: center;
-            background-size: contain;
-          "
-          onclick="showpage('thinwall')"
-        ></div>
-        <div
-          class="cd"
-          style="
-            background-image: url('/images/3331-9460-CHS2559-SINGLE.jpg');
-            background-position: center;
-            background-size: contain;
-          "
-          onclick="showpage('voice')"
-        ></div>
+        <div class="cd" onclick="showpage('singles_thinwall')"></div>
+        <div class="cd" onclick="showpage('singles_voice')"></div>
       </div>
     </div>
 
@@ -604,9 +572,9 @@
       </div>
     </div>
 
-    <div id="cdpage" class="cdpage">
+    <div id="pages" class="pages">
       <div>
-        <div id="page_original">
+        <div id="page_cd_original">
           <p>CD ONE:</p>
           <h2>RAGE IN EDEN<br />[Original 1981 Analog Master]</h2>
           <li><span>THE VOICE</span><span>1</span></li>
@@ -623,7 +591,7 @@
             <span>YOUR NAME (Has Slipped My Mind Again)</span><span>9</span>
           </li>
         </div>
-        <div id="page_sw_stereo">
+        <div id="page_cd_sw_stereo">
           <p>CD TWO:</p>
           <h2>RAGE IN EDEN<br />[Steven Wilson Stereo Mix]</h2>
           <li><span>WE STAND ALONE</span><span>1</span></li>
@@ -637,7 +605,7 @@
           <li>
             <span>YOUR NAME (Has Slipped My Mind Again)</span><span>7</span>
           </li>
-          <p style="margin-top: 4%">B-Sides / Work In Progress Mixes</p>
+          <p style="margin-top: 1em">B-Sides / Work In Progress Mixes</p>
           <li><span>I NEVER WANTED TO BEGIN</span><span>8</span></li>
           <li><span>PATHS AND ANGLES</span><span>9</span></li>
           <li>
@@ -654,7 +622,7 @@
             <span>11</span>
           </li>
         </div>
-        <div id="page_singles">
+        <div id="page_cd_singles">
           <p>CD THREE:</p>
           <h2>SINGLES, B-SIDES & RARITIES</h2>
           <li><span>THE THIN WALL [Single Version]</span><span>1</span></li>
@@ -673,7 +641,7 @@
             <span>ALL STOOD STILL [Live At Crystal Palace 13/6/81]</span
             ><span>7</span>
           </li>
-          <p style="margin-top: 4%">
+          <p style="margin-top: 1em">
             Cassette Rehearsal / Work In Progress Mixes
           </p>
           <li>
@@ -700,7 +668,7 @@
             <span>WE STAND ALONE [Work In Progress Mix]</span><span>16</span>
           </li>
         </div>
-        <div id="page_hammersmith">
+        <div id="page_cd_hammersmith">
           <p>CD FOUR AND FIVE:</p>
           <h2>HAMMERSMITH <span style="font-size: 36px">1981</span></h2>
           <li><span>THE THIN WALL</span><span>1</span></li>
@@ -724,7 +692,7 @@
           <li><span>ALL STOOD STILL</span><span>15</span></li>
           <li><span>THE VOICE</span><span>16</span></li>
         </div>
-        <div id="page_thinwall">
+        <div id="page_singles_thinwall">
           <h2>THE THIN WALL</h2>
           <div style="display: flex; width: 100%; gap: 4%">
             <div style="display: flex; width: 50%">
@@ -737,42 +705,58 @@
           <div style="display: flex; width: 100%; gap: 4%">
             <div style="display: flex; flex-direction: column; width: 50%">
               <p>7"</p>
-              <p>A: The Thin Wall (Single Edit)</p>
-              <p>B: I Never Wanted To Begin</p>
+              <li><span>A: The Thin Wall (Single Edit)</span></li>
+              <li><span>B: I Never Wanted To Begin</span></li>
             </div>
             <div style="display: flex; flex-direction: column; width: 50%">
               <p>12"</p>
-              <p>A: The Thin Wall</p>
-              <p>B: I Never Wanted To Begin (12" Version)</p>
+              <li><span>A: The Thin Wall</span></li>
+              <li>
+                <span>B: I Never Wanted To Begin (12" Version)</span>
+              </li>
             </div>
           </div>
         </div>
-        <div id="page_voice">
+        <div id="page_singles_voice">
           <h2>THE VOICE</h2>
           <div style="display: flex; width: 100%; gap: 4%">
             <div style="display: flex; width: 50%">
-              <img src="/images/3331-9460-CHS2559-SINGLE.jpg" width="100%" />
+              <img
+                src="/images/3331-9460-CHS2559-SINGLE.jpg"
+                width="100%"
+                height="auto"
+              />
+              <div
+                id="voice-sticker"
+                style="
+                  position: absolute;
+                  display: none;
+                  width: 70px;
+                  height: 70px;
+                  margin-left: 26%;
+                  margin-top: 2%;
+                "
+              >
+                <img src="/images/voice_sticker.png" width="100%" />
+              </div>
             </div>
             <div style="display: flex; flex-direction: column; width: 50%">
               <p>7"</p>
-              <p>A: The Voice (Single Edit)</p>
-              <p>B: Paths And Angles</p>
-              <hr
-                style="
-                  width: 70%;
-                  text-align: left;
-                  margin-left: 1%;
-                  border-color: rgb(245, 245, 245);
-                "
-              />
-              <p>12"</p>
-              <p>A1: The Voice</p>
-              <p>A2: Paths And Angles</p>
-              <p>
-                B: <i>Recorded Live At Crystal Palace Bowl, 13 June 1981</i>
-              </p>
-              <p>B1: Private Lives</p>
-              <p>B2: All Stood Still</p>
+              <li><span>A: The Voice (Single Edit)</span></li>
+              <li><span>B: Paths And Angles</span></li>
+              <hr />
+              <section
+                style="display: flex; flex-direction: column"
+                onmouseenter="togglesticker(true)"
+                onmouseleave="togglesticker(false)"
+              >
+                <p>12"</p>
+                <li><span>A1: The Voice</span></li>
+                <li><span>A2: Paths And Angles</span></li>
+                <p>B: <i>Live At Crystal Palace 13/6/81</i></p>
+                <li><span>B1: Private Lives</span></li>
+                <li><span>B2: All Stood Still</span></li>
+              </section>
             </div>
           </div>
         </div>
@@ -782,8 +766,13 @@
     <script>
       const stuff = (id) => {};
 
+      const togglesticker = (show) => {
+        var sticky = document.getElementById("voice-sticker");
+        sticky.style.display = show ? "block" : "none";
+      };
+
       const showpage = (page) => {
-        const cdp = document.getElementById("cdpage");
+        const cdp = document.getElementById("pages");
         cdp.style.display = "flex";
 
         const pages = document.querySelectorAll(`[id^="page_"]`);
