@@ -254,6 +254,42 @@
         }
       }
 
+      #page_singles_thinwall {
+        > div {
+          display: flex;
+          width: 100%;
+          gap: 4%;
+          > div {
+            display: flex;
+            width: 50%;
+          }
+        }
+        > div:last-of-type {
+          > div {
+            flex-direction: column;
+          }
+        }
+      }
+
+      #page_singles_voice {
+        > div {
+          display: flex;
+          width: 100%;
+          gap: 4%;
+          > div {
+            display: flex;
+            width: 50%;
+          }
+          > div:last-of-type {
+            flex-direction: column;
+            section {
+              display: flex;
+              flex-direction: column;
+            }
+          }
+        }
+      }
+
       #otherlinks {
         div {
           background-position: center;
@@ -265,6 +301,15 @@
         div:last-of-type {
           background-image: url("/images/3331-9460-CHS2559-SINGLE.jpg");
         }
+      }
+
+      #voice-sticker {
+        position: absolute;
+        display: none;
+        width: 70px;
+        height: 70px;
+        margin-left: 26%;
+        margin-top: 2%;
       }
     </style>
   </head>
@@ -694,21 +739,29 @@
         </div>
         <div id="page_singles_thinwall">
           <h2>THE THIN WALL</h2>
-          <div style="display: flex; width: 100%; gap: 4%">
-            <div style="display: flex; width: 50%">
-              <img src="/images/3331-9340-CHS2540-SINGLE.jpg" width="100%" />
+          <div>
+            <div>
+              <img
+                src="/images/3331-9340-CHS2540-SINGLE.jpg"
+                width="100%"
+                height="auto"
+              />
             </div>
-            <div style="display: flex; width: 50%">
-              <img src="/images/3331-9340-CHS2540-SINGLE-12.jpg" width="100%" />
+            <div>
+              <img
+                src="/images/3331-9340-CHS2540-SINGLE-12.jpg"
+                width="100%"
+                height="auto"
+              />
             </div>
           </div>
-          <div style="display: flex; width: 100%; gap: 4%">
-            <div style="display: flex; flex-direction: column; width: 50%">
+          <div>
+            <div>
               <p>7"</p>
               <li><span>A: The Thin Wall (Single Edit)</span></li>
               <li><span>B: I Never Wanted To Begin</span></li>
             </div>
-            <div style="display: flex; flex-direction: column; width: 50%">
+            <div>
               <p>12"</p>
               <li><span>A: The Thin Wall</span></li>
               <li>
@@ -719,34 +772,23 @@
         </div>
         <div id="page_singles_voice">
           <h2>THE VOICE</h2>
-          <div style="display: flex; width: 100%; gap: 4%">
-            <div style="display: flex; width: 50%">
+          <div>
+            <div>
               <img
                 src="/images/3331-9460-CHS2559-SINGLE.jpg"
                 width="100%"
                 height="auto"
               />
-              <div
-                id="voice-sticker"
-                style="
-                  position: absolute;
-                  display: none;
-                  width: 70px;
-                  height: 70px;
-                  margin-left: 26%;
-                  margin-top: 2%;
-                "
-              >
+              <div id="voice-sticker">
                 <img src="/images/voice_sticker.png" width="100%" />
               </div>
             </div>
-            <div style="display: flex; flex-direction: column; width: 50%">
+            <div>
               <p>7"</p>
               <li><span>A: The Voice (Single Edit)</span></li>
               <li><span>B: Paths And Angles</span></li>
               <hr />
               <section
-                style="display: flex; flex-direction: column"
                 onmouseenter="togglesticker(true)"
                 onmouseleave="togglesticker(false)"
               >
