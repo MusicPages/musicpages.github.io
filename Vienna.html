@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ultravox - Vienna</title>
+
+    <style>
+      :root {
+        --offwhite: rgb(245, 245, 245);
+        --black: #333333;
+      }
+
+      @font-face {
+        font-family: "Astradyne";
+        src: url("/fonts/astradyne.ttf") format("truetype");
+      }
+
+      @font-face {
+        font-family: "Arquette";
+        src: url("fonts/atc-arquette-regular.woff2") format("woff2");
+      }
+
+      @font-face {
+        font-family: "Arquette Bold";
+        src: url("fonts/atc-arquette-bold.woff2") format("woff2");
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-size: calc(15px + 0.390625vw);
+      }
+
+      .background {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-color: white;
+        display: flex;
+      }
+
+      .boxset {
+        width: 100vh;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cdlinks {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #222;
+      }
+
+      .cd {
+        background-color: black;
+        border-radius: 50%;
+        height: 12vh;
+        width: 12vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border: 2px solid white;
+
+        &:hover,
+        &.active {
+          background-color: white;
+          border-color: white;
+          span {
+            color: black;
+          }
+        }
+
+        &.active {
+          cursor: default;
+        }
+      }
+
+      .otherlinks {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+
+      .formatselector {
+        background-color: #f4d6a2;
+        border-radius: 50%;
+        height: 6vh;
+        width: 6vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border: 2px solid black;
+      }
+
+      .albumcover {
+        height: 98%;
+        width: 98%;
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .inneralbumcover {
+        height: 99%;
+        width: 99%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+      }
+
+      .inneralbumcovercolumn {
+        width: 96%;
+        height: 98%;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        flex-direction: column;
+
+        h1 {
+          font-family: "Astradyne";
+          font-size: 40pt;
+          margin-top: 1vh;
+          color: var(--black);
+        }
+
+        h2 {
+          font-family: "Astradyne";
+          font-size: 24pt;
+          margin-bottom: 0;
+          color: var(--black);
+        }
+      }
+
+      .albumdetail {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+      }
+
+      .albumcoverimagecontainer {
+        background-color: black;
+        width: 100%;
+        height: 54vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cdnumber {
+        font-family: "Astradyne";
+        font-size: 36px;
+        color: white;
+        margin-top: -8px;
+      }
+
+      p {
+        font-family: "Arquette";
+        font-size: 14pt;
+      }
+
+      p.deluxeedition {
+        margin: 0;
+        margin-bottom: 3%;
+      }
+
+      .arquettebold {
+        font-family: "Arquette Bold";
+        font-size: 16pt;
+      }
+
+      /* should work for main and cd pages */
+      .pages,
+      .booklet {
+        flex-direction: column;
+        background-color: white;
+        width: 100vh;
+        height: 100vh;
+        overflow-y: scroll;
+        scrollbar-width: none;
+      }
+
+      .singles {
+        background-color: white;
+        width: 100vh;
+        height: 100vh;
+        overflow-x: scroll;
+        scrollbar-width: none;
+      }
+
+      .booklet,
+      .singles {
+        display: none;
+      }
+
+      [id^="page_"] {
+        display: none;
+      }
+
+      [id^="singles_"] {
+        font-family: "Arquette";
+
+        h2 {
+          margin-block-start: 0;
+          margin-bottom: 2vh;
+        }
+
+        > div {
+          width: 100vh;
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+
+        ul {
+          padding-inline-start: 0;
+          margin-block-end: 0;
+          li {
+            font-family: "Arquette";
+            font-size: 14pt;
+            list-style: none;
+            font-variant-numeric: tabular-nums;
+            text-align: left;
+            margin-bottom: 0.25em;
+
+            span {
+              padding-right: 0.25em;
+              span {
+                display: inline-block;
+                text-align: right;
+                width: 3ch;
+                padding-inline-end: 0.75em;
+              }
+            }
+          }
+        }
+      }
+
+      #singles_sleepwalk,
+      #singles_vienna {
+        background-color: #111;
+        color: white;
+      }
+
+      #singles_strangers,
+      #singles_stood {
+        background-color: #eee;
+        color: black;
+      }
+
+      #singles_strangers,
+      #singles_sleepwalk,
+      #singles_vienna {
+        > div {
+          > div {
+            width: 66%;
+            height: 66%;
+
+            img {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      #singles_stood {
+        > div {
+          > div {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 100%;
+            height: 66%;
+
+            div:nth-of-type(2) {
+              display: flex;
+              flex-direction: column;
+              overflow: scroll;
+              scrollbar-width: none;
+              height: 100%;
+              aspect-ratio: 1 / 1;
+            }
+          }
+        }
+      }
+
+      #booklet_page_foreword {
+        width: 94vh;
+        height: 94vh;
+        margin: 3vh;
+        background-color: #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        > div {
+          margin: 0 15%;
+
+          > p {
+            text-align: justify;
+            font-size: calc(12px + 0.4vh);
+          }
+        }
+      }
+
+      /* All CD pages */
+      [id^="page_cd_"] {
+        width: 100vh;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        /* background-color: grey;
+        border: 1px solid red;*/
+
+        > div {
+          display: flex;
+          flex-direction: column;
+          margin: 4vh;
+          width: 92vh;
+          height: 92vh;
+          border: 4px black solid;
+
+          > div {
+            margin-left: 9vh;
+            margin-top: 6vh;
+
+            li {
+              font-family: "Arquette";
+              font-size: 14pt;
+              list-style: none;
+              font-variant-numeric: tabular-nums;
+              text-align: left;
+              margin-bottom: 0.25em;
+
+              span {
+                padding-right: 0.25em;
+                span {
+                  display: inline-block;
+                  text-align: right;
+                  padding-inline-end: 0.75em;
+                }
+              }
+            }
+
+            li span:first-child {
+              cursor: pointer;
+              &:hover {
+                background-color: black;
+                color: white;
+              }
+            }
+
+            li.no-hover span:first-child {
+              cursor: default;
+              &:hover {
+                background-color: white;
+                color: black;
+              }
+            }
+          }
+        }
+      }
+
+      #otherlinks {
+        div {
+          background-position: center;
+          background-size: contain;
+        }
+        .cd:hover {
+          transition: all 0.1s linear;
+          transform: rotate(20deg);
+        }
+      }
+
+      #sleepwalk_single {
+        background-image: url("/images/vienna/sleepwalk.jpg");
+      }
+
+      #strangers_single {
+        background-image: url("/images/vienna/strangers.jpg");
+      }
+
+      #vienna_single {
+        background-image: url("/images/vienna/vienna.jpg");
+      }
+
+      #stood_single {
+        background-image: url("/images/vienna/all_stood_still_7.jpg");
+      }
+
+      /* temporary override, should be main */
+      #page_boxset {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background">
+      <div id="cdlinks" class="cdlinks">
+        <div class="cd" onclick="showpage('page_cd_original', event)">
+          <span class="cdnumber">1</span>
+        </div>
+        <div class="cd" onclick="showpage('page_cd_wilson', event)">
+          <span class="cdnumber">2</span>
+        </div>
+        <div class="cd" onclick="showpage('page_cd_rarities', event)">
+          <span class="cdnumber">3</span>
+        </div>
+        <div class="cd" onclick="showpage('page_cd_cassette', event)">
+          <span class="cdnumber">4</span>
+        </div>
+        <div class="cd" onclick="showpage('page_cd_live', event)">
+          <span class="cdnumber">5</span>
+        </div>
+      </div>
+
+      <div id="pages" class="pages">
+        <div id="page_boxset" class="boxset">
+          <div class="albumcover">
+            <div class="inneralbumcover">
+              <div class="inneralbumcovercolumn">
+                <div>
+                  <h1>ULTRAVOX</h1>
+                </div>
+                <div class="albumdetail">
+                  <div>
+                    <h2>VIENNA</h2>
+                  </div>
+                  <div>
+                    <p class="deluxeedition">[Deluxe Edition]</p>
+                  </div>
+                  <div class="albumcoverimagecontainer">
+                    <img class="albumcoverimage" src="images/vienna/album_cover.png" width="99%" height="98%" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="page_cd_original">
+          <div>
+            <div>
+              <p>
+                CD ONE:<br />
+                <span class="arquettebold">VIENNA<br />[Original 1980 Analog Master]</span>
+              </p>
+              <li>
+                <span><span>01.</span>ASTRADYNE</span>
+              </li>
+              <li>
+                <span><span>02.</span>NEW EUROPEANS</span>
+              </li>
+              <li>
+                <span><span>03.</span>PRIVATE LIVES</span>
+              </li>
+              <li>
+                <span><span>04.</span>PASSING STRANGERS</span>
+              </li>
+              <li>
+                <span><span>05.</span>SLEEPWALK</span>
+              </li>
+              <li>
+                <span><span>06.</span>MR. X</span>
+              </li>
+              <li>
+                <span><span>07.</span>WESTERN PROMISE</span>
+              </li>
+              <li>
+                <span><span>08.</span>VIENNA</span>
+              </li>
+              <li>
+                <span><span>09.</span>ALL STOOD STILL</span>
+              </li>
+            </div>
+          </div>
+        </div>
+
+        <div id="page_cd_wilson">
+          <div>
+            <div>
+              <p>
+                CD TWO:<br />
+                <span class="arquettebold">VIENNA<br />[Steven Wilson Stereo Mix]</span>
+              </p>
+              <li>
+                <span><span>01.</span>ASTRADYNE</span>
+              </li>
+              <li>
+                <span><span>02.</span>NEW EUROPEANS</span>
+              </li>
+              <li>
+                <span><span>03.</span>PRIVATE LIVES</span>
+              </li>
+              <li>
+                <span><span>04.</span>PASSING STRANGERS</span>
+              </li>
+              <li>
+                <span><span>05.</span>SLEEPWALK</span>
+              </li>
+              <li>
+                <span><span>06.</span>MR. X</span>
+              </li>
+              <li>
+                <span><span>07.</span>WESTERN PROMISE</span>
+              </li>
+              <li>
+                <span><span>08.</span>VIENNA</span>
+              </li>
+              <li>
+                <span><span>09.</span>ALL STOOD STILL</span>
+              </li>
+              <li class="no-hover">
+                <span><span style="color: white">00.</span>B Sides</span>
+              </li>
+              <li>
+                <span><span>10.</span>WAITING</span>
+              </li>
+              <li>
+                <span><span>11.</span>PASSIONATE REPLY</span>
+              </li>
+              <li>
+                <span><span>12.</span>ALLES KLAR</span>
+              </li>
+              <li>
+                <span><span>13.</span>HERR X</span>
+              </li>
+            </div>
+          </div>
+        </div>
+
+        <div id="page_cd_rarities">
+          <div>
+            <div>
+              <p>
+                CD THREE:<br />
+                <span class="arquettebold">RARITIES:<br />Singles/B-Sides/Live</span>
+              </p>
+              <li>
+                <span><span>01.</span>SLEEPWALK [Early Version]</span>
+              </li>
+              <li>
+                <span><span>02.</span>WAITING</span>
+              </li>
+              <li>
+                <span><span>03.</span>FACE TO FACE [Live in St Albans 16/8/1980]</span>
+              </li>
+              <li>
+                <span><span>04.</span>KING'S LEAD HAT [Live at The Lyceum 17/8/1980]</span>
+              </li>
+              <li>
+                <span><span>05.</span>VIENNA [Single Version]</span>
+              </li>
+              <li>
+                <span><span>06.</span>PASSIONATE REPLY</span>
+              </li>
+              <li>
+                <span><span>07.</span>HERR X</span>
+              </li>
+              <li>
+                <span><span>08.</span>ALL STOOD STILL [Single Version]</span>
+              </li>
+              <li>
+                <span><span>09.</span>ALLES KLAR</span>
+              </li>
+              <li>
+                <span><span>10.</span>KEEP TALKING [Cassette Recording During Rehearsals]</span>
+              </li>
+              <li>
+                <span><span>11.</span>ALL STOOD STILL [12" Mix]</span>
+              </li>
+              <li>
+                <span><span>12.</span>SLEEPWALK [Soundcheck, The Lyceum 17/8/1980]</span>
+              </li>
+              <li>
+                <span><span>13.</span>ALL STOOD STILL [Soundcheck, The Lyceum 17/8/1980]</span>
+              </li>
+              <li>
+                <span><span>14.</span>VIENNA [Live Video Version, St Albans City Hall 16/8/1980]</span>
+              </li>
+              <li>
+                <span><span>15.</span>SLEEPWALK [Live Video Version, St Albans City Hall 16/8/1980]</span>
+              </li>
+            </div>
+          </div>
+        </div>
+
+        <div id="page_cd_cassette">
+          <div>
+            <div>
+              <p>
+                CD FOUR:<br />
+                <span class="arquettebold">CASSETTE RECORDINGS<br />During Rehearsals 1979/80</span>
+              </p>
+              <li>
+                <span><span>01.</span>ASTRADYNE</span>
+              </li>
+              <li>
+                <span><span>02.</span>NEW EUROPEANS [Instrumental]</span>
+              </li>
+              <li>
+                <span><span>03.</span>PRIVATE LIVES [Instrumental]</span>
+              </li>
+              <li>
+                <span><span>04.</span>PASSING STRANGERS [Instrumental 1]</span>
+              </li>
+              <li>
+                <span><span>05.</span>SLEEPWALK [Version 1]</span>
+              </li>
+              <li>
+                <span><span>06.</span>MR. X</span>
+              </li>
+              <li>
+                <span><span>07.</span>WESTERN PROMISE</span>
+              </li>
+              <li>
+                <span><span>08.</span>VIENNA</span>
+              </li>
+              <li>
+                <span><span>09.</span>ALL STOOD STILL [Instrumental 1]</span>
+              </li>
+              <li>
+                <span><span>10.</span>SOUND ON SOUND</span>
+              </li>
+              <li>
+                <span><span>11.</span>ANIMALS</span>
+              </li>
+              <li>
+                <span><span>12.</span>SLEEPWALK [Version 2]</span>
+              </li>
+              <li>
+                <span><span>13.</span>SOUND ON SOUND [Instrumental]</span>
+              </li>
+              <li>
+                <span><span>14.</span>PASSING STRANGERS [Instrumental 2]</span>
+              </li>
+              <li>
+                <span><span>15.</span>ALL STOOD STILL [Instrumental 2]</span>
+              </li>
+            </div>
+          </div>
+        </div>
+
+        <div id="page_cd_live">
+          <div>
+            <div>
+              <p>
+                CD FIVE:<br />
+                <span class="arquettebold">LIVE<br />St. Albans 1980</span>
+              </p>
+              <li>
+                <span><span>01.</span>ASTRADYNE</span>
+              </li>
+              <li>
+                <span><span>02.</span>NEW EUROPEANS</span>
+              </li>
+              <li>
+                <span><span>03.</span>PASSING STRANGERS</span>
+              </li>
+              <li>
+                <span><span>04.</span>QUIET MEN</span>
+              </li>
+              <li>
+                <span><span>05.</span>FACE TO FACE</span>
+              </li>
+              <li>
+                <span><span>06.</span>MR. X</span>
+              </li>
+              <li>
+                <span><span>07.</span>WESTERN PROMISE</span>
+              </li>
+              <li>
+                <span><span>08.</span>VIENNA</span>
+              </li>
+              <li>
+                <span><span>09.</span>SLOW MOTION</span>
+              </li>
+              <li>
+                <span><span>10.</span>HIROSHIMA MON AMOUR</span>
+              </li>
+              <li>
+                <span><span>11.</span>ALL STOOD STILL</span>
+              </li>
+              <li>
+                <span><span>12.</span>SLEEPWALK</span>
+              </li>
+              <li>
+                <span><span>13.</span>PRIVATE LIVES</span>
+              </li>
+              <li>
+                <span><span>14.</span>KING'S LEAD HAT</span>
+              </li>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="booklet" class="booklet">
+        <div id="booklet_page_foreword">
+          <div>
+            <p><strong>VIENNA...</strong></p>
+            <p>In 1979 when I joined Ultravox we had nothing.</p>
+            <p>No money. No label. No management and very little, basic equipment.</p>
+            <p>
+              These recordings show just what can be achieved with a couple of keyboards, some guitars, a handful of
+              ideas and a lot of naivety.
+            </p>
+            <p>
+              I was blown away when I first heard these extremely live, unretouched performances. The energy and
+              atmosphere captured on tape is amazing. Technically how we managed, to not only create the Vienna album in
+              a studio environment with the equipment we had, but how on earth we managed to perform live without the
+              aid of modern technology, personal in ear monitor systems, computers, digital mixing desks etc. is beyond
+              me now.
+            </p>
+            <p>
+              Over the years Ultravox was always considered to be an 'electronic' synthesiser band but after hearing
+              these recordings my belief that the band was always a powerful rock band has been well and truly
+              confirmed. What you hear here is exactly what was played at that show.
+            </p>
+            <p>
+              These recordings fill me with the memories of the period, from joining a band most people had given up on
+              to the heady joy of being surrounded by creative, like-minded musicians such as my bandmates.
+            </p>
+            <p>
+              These recordings capture the moment where the band transitioned and blossomed from the Ultravox that had
+              been, to the Ultravox that was to be.
+            </p>
+            <p><em>Midge Ure - May 2020</em></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="singles" class="singles">
+        <div id="singles_sleepwalk">
+          <div>
+            <h2>Sleepwalk</h2>
+
+            <div>
+              <img src="images/vienna/sleepwalk.jpg" />
+            </div>
+
+            <ul>
+              <li>
+                <span><span>1980</span><span>7"</span>Sleepwalk / Waiting</span>
+              </li>
+              <li>
+                <span><span>2020</span><span>12"</span>Sleepwalk / Waiting (Steven Wilson Stereo Mixes)</span>
+              </li>
+              <li>
+                <span>
+                  <span style="color: #111">0000</span><span style="color: #111">12"</span>Sleepwalk / Waiting (Conny
+                  Plank Original Mixes)
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="singles_strangers">
+          <div>
+            <h2>Passing Strangers</h2>
+
+            <div>
+              <img src="images/vienna/strangers.jpg" />
+            </div>
+
+            <ul>
+              <li>
+                <span><span>1980</span><span>7"</span>Passing Strangers / Face To Face</span>
+              </li>
+              <li>
+                <span><span style="color: #eee">0000</span><span>12"</span>Passing Strangers</span>
+              </li>
+              <li>
+                <span>
+                  <span style="color: #eee">0000</span><span style="color: #eee">12"</span>Face To Face (Live) / King's
+                  Lead Hat (Live)
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="singles_vienna">
+          <div>
+            <h2>Vienna</h2>
+
+            <div>
+              <img src="images/vienna/vienna.jpg" />
+            </div>
+
+            <ul>
+              <li>
+                <span><span>1981</span><span>7"</span>Vienna (Single version) / Passionate Reply</span>
+              </li>
+              <li>
+                <span><span style="color: #111">0000</span><span>12"</span>Vienna</span>
+              </li>
+              <li>
+                <span>
+                  <span style="color: #111">0000</span><span style="color: #111">12"</span>Passionate Reply / Herr
+                  X</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="singles_stood">
+          <div>
+            <h2>All Stood Still</h2>
+            <div>
+              <div class="formatselector" onclick="toggleimage('stood7')">7"</div>
+              <div id="stoodimgcontainer">
+                <img id="stood7" src="images/vienna/all_stood_still_7.jpg" />
+                <img id="stood12" src="images/vienna/all_stood_still_12.jpg" />
+              </div>
+              <div class="formatselector" onclick="toggleimage('stood12')">12"</div>
+            </div>
+            <ul>
+              <li>
+                <span><span>1981</span><span>7"</span>All Stood Still (Single version) / Alles Klar</span>
+              </li>
+              <li>
+                <span><span style="color: #eee">0000</span><span>12"</span>All Stood Still (12" mix)</span>
+              </li>
+              <li>
+                <span>
+                  <span style="color: #eee">0000</span><span style="color: #eee">12"</span>Alles Klar / Keep
+                  Torqe-ing</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="otherlinks" class="cdlinks">
+        <div class="cd" onclick="showbooklet('booklet_page_foreword')"></div>
+        <div id="sleepwalk_single" class="cd" onclick="showsingle('singles_sleepwalk')"></div>
+        <div id="strangers_single" class="cd" onclick="showsingle('singles_strangers')"></div>
+        <div id="vienna_single" class="cd" onclick="showsingle('singles_vienna')"></div>
+        <div id="stood_single" class="cd" onclick="showsingle('singles_stood')"></div>
+      </div>
+    </div>
+
+    <script>
+      let onSinglesPage = false;
+      let currentSinglesPage = undefined;
+
+      const deactivateActiveCdElements = () => {
+        const cds = document.querySelectorAll(`.cd.active`);
+        cds.forEach((el) => {
+          el.classList.remove("active");
+        });
+      };
+
+      const showpage = (page, e) => {
+        onSinglesPage = false;
+
+        // scroll to a specific item
+        // const newpage = document.getElementById(page);
+        // newpage.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.getElementById("singles").style.display = "none";
+        document.getElementById("booklet").style.display = "none";
+        document.getElementById("pages").style.display = "flex";
+
+        deactivateActiveCdElements();
+
+        const pages = document.querySelectorAll(`[id^="page_"]`);
+        pages.forEach((pg) => {
+          pg.style.display = "none";
+        });
+
+        const element = document.getElementById(page);
+        element.style.display = "flex";
+
+        // currentTarget always references the element the event is attached to
+        e.currentTarget.classList.add("active");
+      };
+
+      const showbooklet = (page, e) => {
+        onSinglesPage = false;
+
+        deactivateActiveCdElements();
+
+        document.getElementById("booklet").style.display = "flex";
+        document.getElementById("pages").style.display = "none";
+        document.getElementById("singles").style.display = "none";
+
+        // scroll to a specific item
+        const newpage = document.getElementById(page);
+        newpage.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      const showsingle = (page, scrollOptions) => {
+        if (!scrollOptions) {
+          scrollOptions = { behavior: "smooth", block: "start" };
+        }
+
+        if (!onSinglesPage) {
+          scrollOptions = { behavior: "instant", block: "start" };
+        }
+
+        deactivateActiveCdElements();
+
+        document.getElementById("booklet").style.display = "none";
+        document.getElementById("pages").style.display = "none";
+        document.getElementById("singles").style.display = "flex";
+
+        // scroll to a specific item
+        const newpage = document.getElementById(page);
+        newpage.scrollIntoView(scrollOptions);
+
+        // update state
+        onSinglesPage = true;
+        currentSinglesPage = page;
+      };
+
+      const toggleimage = (id) => {
+        const el = document.getElementById(id);
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      window.addEventListener("resize", () => {
+        console.log("triggered resize", onSinglesPage, currentSinglesPage);
+
+        // can end up with 2 divs displaying half and half after resize, so this fixes that
+        if (onSinglesPage) {
+          showsingle(currentSinglesPage, { behavior: "instant", block: "start" });
+        }
+      });
+
+      function ready(fn) {
+        // see if DOM is already available
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+          // call on next available tick
+          setTimeout(fn, 1);
+        } else {
+          document.addEventListener("DOMContentLoaded", fn);
+        }
+      }
+
+      ready(function () {
+        console.log("READY");
+      });
+    </script>
+  </body>
+</html>
